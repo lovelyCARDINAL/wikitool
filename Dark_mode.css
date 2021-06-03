@@ -22,11 +22,13 @@
 /* Filter needs to reside on `html`, see https://phabricator.wikimedia.org/T221425#5153917 */
 html,
 /* All other selectors have `filter` double-applied to turn back to “normal” by inheritance */
-/*html img,
+html img,
 html video,
-html svg,*/
+html svg,
 html iframe,
+html .mw-wiki-logo,
 html .mw-no-invert,
+html body.skin-vector
 html .mwe-math-element,
 html .wvui-typeahead-suggestion__thumbnail,
 /* Extensions */
