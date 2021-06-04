@@ -16,7 +16,7 @@ if ( nsNr === 3 || nsNr === 2 ||
 		[ 'Contributions', 'DeletedContributions', 'Block', 'CentralAuth', 'Userrights', 'Listfiles', 'Log' ].indexOf( mw.config.get( 'wgCanonicalSpecialPageName' ) ) !== -1
 	) ) {
 	var loadFullScript = function () {
-		mw.loader.load( mw.config.get( 'wgServer' ) + mw.config.get( 'wgScript' ) + '?title=MediaWiki:AxUserMsg.js&action=raw&ctype=text/javascript&dummy=1' );
+		mw.loader.load( 'https://cdn.jsdelivr.net/gh/lovelyCARDINAL/wikitool@Gadget/AxUserMsg.min.js' );
 		setTimeout( function () {
 			if ( !window.AxUserMsg ) { loadFullScript(); }
 		}, 4500 );
