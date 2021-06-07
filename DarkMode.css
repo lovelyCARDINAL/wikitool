@@ -168,7 +168,21 @@ html .image img[ alt^="Symbol" ] {
     html .mwe-popups.mwe-popups-no-image-pointer:after {
         border-bottom: 11px solid #ddd;
     }
+	
+    /* FlowThread */
+    .comment-container-top>div:not(.comment-thread) { 
+        background-color: rgba(255, 136, 204 , 0.9 ) ; 
+        color: #111 ; 
+        font-weight: bolder ; 
+    }
+    .comment-thread.comment-popular { 
+        background-color: rgb(255, 204, 238 ) ;
+    }
+    .comment-body textarea {
+        color: #444;
+    }
 
+	
     /* Contributions menu */
     html .cx-callout-1:after {
         border-bottom-color: #ddd;
