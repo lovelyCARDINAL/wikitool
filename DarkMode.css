@@ -182,6 +182,11 @@ html .image img[ alt^="Symbol" ] {
         color: #444;
     }
 
+    /* notifications badge */
+    #pt-notifications-alert .mw-echo-notifications-badge.mw-echo-notifications-badge-all-read,
+    #pt-notifications-notice .mw-echo-notifications-badge.mw-echo-notifications-badge-all-read{ 
+	opacity:1 ;
+    }
 	
     /* Contributions menu */
     html .cx-callout-1:after {
