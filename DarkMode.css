@@ -64,6 +64,16 @@ html #simpleSearch #searchInput,
 html #siteNotice #centralNotice .cnotice {
 	background-color: #ddd;
 }
+#mw-panel #p-logo .mw-wiki-logo {
+        background-image:none!important;
+}
+body.skin-vector {
+	background: no-repeat top left #f6f6f6
+}	
+html #footer-info-copyright,
+html .skin-vector{
+	background: #000;
+}
 
 /* Borders */
 html body,
