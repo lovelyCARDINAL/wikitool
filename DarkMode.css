@@ -63,14 +63,14 @@ html .ext-related-articles-card-list .ext-related-articles-card-thumb {
     html #siteNotice #centralNotice .cnotice {
         background-color: #ddd;
     }
-    #mw-panel #p-logo .mw-wiki-logo {
+    html #mw-panel #p-logo .mw-wiki-logo {
         background-image: none !important;
     }
-    body.skin-vector {
+    html body.skin-vector {
         background: no-repeat top left #f6f6f6;
     }
     html #footer-info-copyright {
-        background: #000;
+        background: 0 15px no-repeat ;
     }
 
     /* Borders */
