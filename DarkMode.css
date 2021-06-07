@@ -69,8 +69,7 @@ html .ext-related-articles-card-list .ext-related-articles-card-thumb {
     body.skin-vector {
         background: no-repeat top left #f6f6f6;
     }
-    html #footer-info-copyright,
-    html .skin-vector {
+    html #footer-info-copyright {
         background: #000;
     }
 
