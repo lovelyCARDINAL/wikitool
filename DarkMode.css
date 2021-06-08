@@ -221,7 +221,7 @@ html .image img[ alt^="Symbol" ] {
     /* Mobile Notification-area （Beta）*/
     .mw-notification-area .mw-notification-content { 
 	color:#000;
- }
+    }
 }
 
 @-moz-document url-prefix() {
