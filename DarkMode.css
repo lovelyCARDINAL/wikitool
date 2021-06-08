@@ -213,10 +213,15 @@ html .image img[ alt^="Symbol" ] {
         height: 124px;
     }
 
-    /* Mobile Wikipedia logo mobile header */
+    /* Mobile Wikilogo mobile header */
     html .branding-box img {
         filter: brightness(0);
     }
+	
+    /* Mobile Notification-area （Beta）*/
+    .mw-notification-area .mw-notification-content { 
+	color:#000;
+ }
 }
 
 @-moz-document url-prefix() {
