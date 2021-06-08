@@ -192,6 +192,11 @@ html .image img[ alt^="Symbol" ] {
     html .cx-callout-1:after {
         border-bottom-color: #ddd;
     }
+	
+    /* InPageEdit Toolbox */
+    #ipe-edit-toolbox .ipe-toolbox-btn{ color:#111; }
+    #ipe-edit-toolbox .ipe-toolbox-btn { background:#1135ff; }
+    #ipe-edit-toolbox .ipe-toolbox-btn#preference-btn { background:#6633fd; }
 
     /* ::: Skin specific rules ::: */
     /* Wikipedia globe fix */
@@ -207,7 +212,6 @@ html .image img[ alt^="Symbol" ] {
     .skin-timeless #mw-site-navigation {
         position: relative;
     }
-
     .skin-timeless #p-logo.mw-no-invert {
         left: 1em;
         height: 124px;
