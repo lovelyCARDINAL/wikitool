@@ -1,5 +1,5 @@
 let NS = [0,4,12]
-if ( NS.includes(mw.config.get('wgNamespaceNumber') ) {
+if ( NS.includes(mw.config.get('wgNamespaceNumber')) ) {
   jQuery(document).ready(function(){
     'use strict';
     mw.util.addPortletLink('p-cactions', 
