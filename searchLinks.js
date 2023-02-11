@@ -21,12 +21,7 @@ $.when(
     if (NS.includes(wgNamespaceNumber) || (isWhatlinkshere && !isTemplate)) {
         mw.util.addPortletLink(
             "p-cactions",
-            wgScript +
-        "?title=Special:Search&search=insource:%22" +
-        Title +
-        "%22+linksto:%22" +
-        encodeURIComponent(RelevantPageName) +
-        "%22&profile=advanced&ns0=1&ns4=1&ns8=1&ns10=1&ns12=1&ns14=1&ns828=1",
+            wgScript + "?title=Special:Search&search=insource:%22" + Title + "%22+linksto:%22" + encodeURIComponent(RelevantPageName) + "%22&profile=advanced&ns0=1&ns4=1&ns8=1&ns10=1&ns12=1&ns14=1&ns828=1",
             wgULS("查找链入", "搜尋連入"),
             "ca-searchlinks",
             wgULS("通过高级搜索查找链入", "搜尋實際連結至此的頁面")
@@ -35,12 +30,7 @@ $.when(
     } else if (isTemplate) {
         mw.util.addPortletLink(
             "p-cactions",
-            wgScript +
-        "?title=Special:Search&search=insource:%22" +
-        Title +
-        "%22+hastemplate:%22" +
-        Title +
-        "%22&profile=advanced&ns0=1&ns4=1&ns8=1&ns10=1&ns12=1&ns14=1&ns828=1",
+            wgScript + "?title=Special:Search&search=insource:%22" + Title + "%22+hastemplate:%22" + Title + "%22&profile=advanced&ns0=1&ns4=1&ns8=1&ns10=1&ns12=1&ns14=1&ns828=1",
             wgULS("查找嵌入", "搜尋嵌入"),
             "ca-searchlinks",
             wgULS("通过高级搜索查找嵌入", "搜尋實際的嵌入")
