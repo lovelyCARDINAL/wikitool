@@ -18,23 +18,24 @@
  */
 
 @media screen {
+
     /* Filter needs to reside on `html`, see https://phabricator.wikimedia.org/T221425#5153917 */
     html,
-/* All other selectors have `filter` double-applied to turn back to “normal” by inheritance */
-html img,
-html video,
-html svg,
-html iframe,
-html .mw-no-invert,
-html .mwe-math-element,
-html .wvui-typeahead-suggestion__thumbnail,
-/* Extensions */
-html .cx-slitem__image,
-html .mw-mmv-overlay,
-html .mw-mmv-pre-image,
-html .mw-kartographer-map,
-html .mw-kartographer-mapDialog-map,
-html .ext-related-articles-card-list .ext-related-articles-card-thumb {
+    /* All other selectors have `filter` double-applied to turn back to “normal” by inheritance */
+    html img,
+    html video,
+    html svg,
+    html iframe,
+    html .mw-no-invert,
+    html .mwe-math-element,
+    html .wvui-typeahead-suggestion__thumbnail,
+    /* Extensions */
+    html .cx-slitem__image,
+    html .mw-mmv-overlay,
+    html .mw-mmv-pre-image,
+    html .mw-kartographer-map,
+    html .mw-kartographer-mapDialog-map,
+    html .ext-related-articles-card-list .ext-related-articles-card-thumb {
         filter: invert(1) hue-rotate(180deg);
     }
 
@@ -63,14 +64,17 @@ html .ext-related-articles-card-list .ext-related-articles-card-thumb {
     html #siteNotice #centralNotice .cnotice {
         background-color: #ddd;
     }
+
     html #mw-panel #p-logo .mw-wiki-logo {
         background-image: none !important;
     }
+
     html body.skin-vector {
         background: no-repeat top left #f6f6f6;
     }
+
     html #footer-info-copyright {
-        background: 0 15px no-repeat ;
+        background: 0 15px no-repeat;
     }
 
     /* Borders */
@@ -99,14 +103,14 @@ html .ext-related-articles-card-list .ext-related-articles-card-thumb {
     /* Links */
     /* Links: normal */
     html a,
-html .vector-menu-tabs li a,
-/* Backwards compatible VectorTabs, deprecated in MW v1.35. */
-html .vectorTabs li a,
-html .toctogglelabel,
-html .mw-parser-output a.external,
-html .mw-parser-output a.extiw,
-html .mw-parser-output a.extiw:active,
-html #mw-panel .portal .body li a {
+    html .vector-menu-tabs li a,
+    /* Backwards compatible VectorTabs, deprecated in MW v1.35. */
+    html .vectorTabs li a,
+    html .toctogglelabel,
+    html .mw-parser-output a.external,
+    html .mw-parser-output a.extiw,
+    html .mw-parser-output a.extiw:active,
+    html #mw-panel .portal .body li a {
         /* color: #69f; Proposal below for level AA conformance, see also https://phabricator.wikimedia.org/T233266
 	   `#36c` is transformed by :root `filter` to be closer to chosen `#69f`. */
         color: #36c;
@@ -142,10 +146,10 @@ html #mw-panel .portal .body li a {
     }
 
     /* Dealing with false positives from selector above */
-    html .mw-echo-ui-notificationItemWidget-icon img[ src*='svg' ],
-html .mbox-image .image img[ src*='svg' ],
-/* Vote symbols on Talk pages */
-html .image img[ alt^="Symbol" ] {
+    html .mw-echo-ui-notificationItemWidget-icon img[ src*='svg'],
+    html .mbox-image .image img[ src*='svg'],
+    /* Vote symbols on Talk pages */
+    html .image img[ alt^="Symbol"] {
         background-color: transparent;
     }
 
@@ -168,35 +172,45 @@ html .image img[ alt^="Symbol" ] {
     html .mwe-popups.mwe-popups-no-image-pointer:after {
         border-bottom: 11px solid #ddd;
     }
-	
+
     /* FlowThread */
-    .comment-container-top>div:not(.comment-thread) { 
-        background-color: rgba(255, 136, 204 , 0.9 ) ; 
-        color: #111 ; 
-        font-weight: bolder ; 
+    .comment-container-top>div:not(.comment-thread) {
+        background-color: rgba(255, 136, 204, 0.9);
+        color: #111;
+        font-weight: bolder;
     }
-    .comment-thread.comment-popular { 
-        background-color: rgb(255, 204, 238 ) ;
+
+    .comment-thread.comment-popular {
+        background-color: rgb(255, 204, 238);
     }
+
     .comment-body textarea {
         color: #444;
     }
 
     /* notifications badge */
     #pt-notifications-alert .mw-echo-notifications-badge.mw-echo-notifications-badge-all-read,
-    #pt-notifications-notice .mw-echo-notifications-badge.mw-echo-notifications-badge-all-read{ 
-	opacity:1 ;
+    #pt-notifications-notice .mw-echo-notifications-badge.mw-echo-notifications-badge-all-read {
+        opacity: 1;
     }
-	
+
     /* Contributions menu */
     html .cx-callout-1:after {
         border-bottom-color: #ddd;
     }
-	
+
     /* InPageEdit Toolbox */
-    #ipe-edit-toolbox .ipe-toolbox-btn{ color:#111; }
-    #ipe-edit-toolbox .ipe-toolbox-btn { background:#1135ff; }
-    #ipe-edit-toolbox .ipe-toolbox-btn#preference-btn { background:#6633fd; }
+    #ipe-edit-toolbox .ipe-toolbox-btn {
+        color: #111;
+    }
+
+    #ipe-edit-toolbox .ipe-toolbox-btn {
+        background: #1135ff;
+    }
+
+    #ipe-edit-toolbox .ipe-toolbox-btn#preference-btn {
+        background: #6633fd;
+    }
 
     /* ::: Skin specific rules ::: */
     /* Wikipedia globe fix */
@@ -212,6 +226,7 @@ html .image img[ alt^="Symbol" ] {
     .skin-timeless #mw-site-navigation {
         position: relative;
     }
+
     .skin-timeless #p-logo.mw-no-invert {
         left: 1em;
         height: 124px;
@@ -221,10 +236,10 @@ html .image img[ alt^="Symbol" ] {
     html .branding-box img {
         filter: brightness(0);
     }
-	
+
     /* Mobile Notification-area （Beta）*/
-    .mw-notification-area .mw-notification-content { 
-	color:#000;
+    .mw-notification-area .mw-notification-content {
+        color: #000;
     }
 }
 

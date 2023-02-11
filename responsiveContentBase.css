@@ -1,9 +1,10 @@
-@media ( max-width: 800px ) {
-	table.tmbox:not( .mbox-small ),
-	table.ambox:not( .mbox-small ),
-	table.imbox:not( .mbox-small ),
-	table.cmbox:not( .mbox-small ),
-	table.ombox:not( .mbox-small ) {
+@media (max-width: 800px) {
+
+	table.tmbox:not(.mbox-small),
+	table.ambox:not(.mbox-small),
+	table.imbox:not(.mbox-small),
+	table.cmbox:not(.mbox-small),
+	table.ombox:not(.mbox-small) {
 		margin: 0;
 		padding: 5px;
 		box-sizing: border-box;
@@ -26,29 +27,29 @@
 	}
 
 	/* Main page fixes */
-	#mp-topbanner > tbody > tr {
+	#mp-topbanner>tbody>tr {
 		display: flex;
 		flex-wrap: wrap;
 		width: auto !important;
 	}
 
-	#mp-topbanner > tbody > tr > td:nth-child( 1 ) {
+	#mp-topbanner>tbody>tr>td:nth-child(1) {
 		flex: 3 0 auto;
 		width: auto !important;
 	}
 
-	#mp-topbanner > tbody > tr > td:nth-child( n+2 ) {
+	#mp-topbanner>tbody>tr>td:nth-child(n+2) {
 		flex: 0 0 auto;
 		width: auto !important;
 	}
 
 	/* main page table */
-	#mp-upper > tbody > tr,
-	#mp-upper > tbody > tr > *,
-	#mp-bottom > tbody > tr,
-	#mp-bottom > tbody > tr > *,
-	#mp-tfp > table > tbody > tr,
-	#mp-tfp > table > tbody > tr > * {
+	#mp-upper>tbody>tr,
+	#mp-upper>tbody>tr>*,
+	#mp-bottom>tbody>tr,
+	#mp-bottom>tbody>tr>*,
+	#mp-tfp>table>tbody>tr,
+	#mp-tfp>table>tbody>tr>* {
 		display: block;
 		width: 100% !important;
 		max-width: 100%;
@@ -56,7 +57,8 @@
 	}
 }
 
-@media only screen and ( max-width: 600px ) {
+@media only screen and (max-width: 600px) {
+
 	/* !important to ignore inline styles */
 	/* .mw-body-content to increase specificity */
 	.mw-body-content table {
@@ -97,13 +99,13 @@
 		background-color: transparent;
 	}
 
-	.mw-body-content .thumbcaption > .magnify {
+	.mw-body-content .thumbcaption>.magnify {
 		display: none;
 	}
 
 	/* amboxes become normal blocks */
-	.mw-body-content table.ambox > tbody,
-	.mw-body-content table.ambox > tbody > tr {
+	.mw-body-content table.ambox>tbody,
+	.mw-body-content table.ambox>tbody>tr {
 		display: block;
 	}
 
@@ -147,13 +149,13 @@
 
 	.mw-body-content .infobox,
 	.mw-body-content .navbox,
-	.mw-body-content .navbox > .navbox-inner {
+	.mw-body-content .navbox>.navbox-inner {
 		width: 100% !important;
 		box-sizing: border-box;
 		display: table;
 	}
 
-	.mw-body-content .image > img {
+	.mw-body-content .image>img {
 		max-width: 100%;
 		min-width: 20px;
 		height: auto;
@@ -165,9 +167,9 @@
 	}
 }
 
-@media only screen and ( max-width: 600px ) and ( -webkit-min-device-pixel-ratio: 1.5 ),
-	only screen and ( max-width: 600px) and ( min-resolution: 1.5dppx ) {
-	@supports ( object-fit: contain ) {
+@media only screen and (max-width: 600px) and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (max-width: 600px) and (min-resolution: 1.5dppx) {
+	@supports (object-fit: contain) {
 		.mw-body-content div.thumbinner {
 			width: 100% !important;
 		}
@@ -180,112 +182,112 @@
 	}
 }
 
-@media ( min-width: 1500px ) {
-	.ns-0 .mw-body-content .mw-parser-output > * {
+@media (min-width: 1500px) {
+	.ns-0 .mw-body-content .mw-parser-output>* {
 		margin-right: 350px !important;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > * > li {
+	.ns-0 .mw-body-content .mw-parser-output>*>li {
 		list-style-position: inside;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > .infobox,
-	.ns-0 .mw-body-content .mw-parser-output > .sidebar,
-	.ns-0 .mw-body-content .mw-parser-output > .floatright,
-	.ns-0 .mw-body-content .mw-parser-output > .sistersitebox,
-	.ns-0 .mw-body-content .mw-parser-output > .mbox-small, 
-	.ns-0 .mw-body-content .mw-parser-output > .tright {
+	.ns-0 .mw-body-content .mw-parser-output>.infobox,
+	.ns-0 .mw-body-content .mw-parser-output>.sidebar,
+	.ns-0 .mw-body-content .mw-parser-output>.floatright,
+	.ns-0 .mw-body-content .mw-parser-output>.sistersitebox,
+	.ns-0 .mw-body-content .mw-parser-output>.mbox-small,
+	.ns-0 .mw-body-content .mw-parser-output>.tright {
 		margin-right: 0 !important;
 		margin-left: 1.4em !important;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > .infobox,
-	.ns-0 .mw-body-content .mw-parser-output > .sidebar,
-	.ns-0 .mw-body-content .mw-parser-output > .floatright,
-	.ns-0 .mw-body-content .mw-parser-output > .tright {
+	.ns-0 .mw-body-content .mw-parser-output>.infobox,
+	.ns-0 .mw-body-content .mw-parser-output>.sidebar,
+	.ns-0 .mw-body-content .mw-parser-output>.floatright,
+	.ns-0 .mw-body-content .mw-parser-output>.tright {
 		min-width: 330px !important;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > .infobox,
-	.ns-0 .mw-body-content .mw-parser-output > .sidebar,
-	.ns-0 .mw-body-content .mw-parser-output > .tright > .thumbinner {
+	.ns-0 .mw-body-content .mw-parser-output>.infobox,
+	.ns-0 .mw-body-content .mw-parser-output>.sidebar,
+	.ns-0 .mw-body-content .mw-parser-output>.tright>.thumbinner {
 		width: 330px !important;
 		box-sizing: border-box;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > .tright .thumbimage {
+	.ns-0 .mw-body-content .mw-parser-output>.tright .thumbimage {
 		width: 100%;
 		height: auto;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > #toc,
-	.ns-0 .mw-body-content .mw-parser-output > .floatleft,
-	.ns-0 .mw-body-content .mw-parser-output > .tleft {
+	.ns-0 .mw-body-content .mw-parser-output>#toc,
+	.ns-0 .mw-body-content .mw-parser-output>.floatleft,
+	.ns-0 .mw-body-content .mw-parser-output>.tleft {
 		margin-right: 1.4em !important;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > table,
-	.ns-0 .mw-body-content .mw-parser-output > .center,
-	.ns-0 .mw-body-content .mw-parser-output > .navbox,
-	#mp-topbanner{
-    	max-width: calc( 100% - 350px );
+	.ns-0 .mw-body-content .mw-parser-output>table,
+	.ns-0 .mw-body-content .mw-parser-output>.center,
+	.ns-0 .mw-body-content .mw-parser-output>.navbox,
+	#mp-topbanner {
+		max-width: calc(100% - 350px);
 	}
 }
 
-@media ( min-width: 1900px ) {
-	.ns-0 .mw-body-content .mw-parser-output > * {
+@media (min-width: 1900px) {
+	.ns-0 .mw-body-content .mw-parser-output>* {
 		margin-left: 350px !important;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > #toc {
+	.ns-0 .mw-body-content .mw-parser-output>#toc {
 		box-sizing: border-box;
 		float: left;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > #toc,
-	.ns-0 .mw-body-content .mw-parser-output > .floatleft,
-	.ns-0 .mw-body-content .mw-parser-output > .mbox-small-left,
-	.ns-0 .mw-body-content .mw-parser-output > .tleft {
+	.ns-0 .mw-body-content .mw-parser-output>#toc,
+	.ns-0 .mw-body-content .mw-parser-output>.floatleft,
+	.ns-0 .mw-body-content .mw-parser-output>.mbox-small-left,
+	.ns-0 .mw-body-content .mw-parser-output>.tleft {
 		margin-left: 0 !important;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > #toc,
-	.ns-0 .mw-body-content .mw-parser-output > .floatleft,
-	.ns-0 .mw-body-content .mw-parser-output > .tleft {
+	.ns-0 .mw-body-content .mw-parser-output>#toc,
+	.ns-0 .mw-body-content .mw-parser-output>.floatleft,
+	.ns-0 .mw-body-content .mw-parser-output>.tleft {
 		min-width: 330px !important;
 		max-width: 330px !important;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > .tleft > .thumbinner {
+	.ns-0 .mw-body-content .mw-parser-output>.tleft>.thumbinner {
 		width: 330px !important;
 		box-sizing: border-box;
 	}
 
-	.ns-0 .mw-body-content .mw-parser-output > .tleft .thumbimage {
+	.ns-0 .mw-body-content .mw-parser-output>.tleft .thumbimage {
 		width: 100%;
 		height: auto;
 	}
 
 	/* Do this in all namespaces */
-	:not( .ns-0 ) .mw-body-content .mw-parser-output {
-    		max-width: 1900px;
+	:not(.ns-0) .mw-body-content .mw-parser-output {
+		max-width: 1900px;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
-	.ns-0 .mw-body > :not(.mw-body-content),
-	.ns-0 .mw-body-content > :not(#mw-content-text) {
-		max-width: calc( 1900px - 700px );
+	.ns-0 .mw-body> :not(.mw-body-content),
+	.ns-0 .mw-body-content> :not(#mw-content-text) {
+		max-width: calc(1900px - 700px);
 		margin-left: auto;
 		margin-right: auto;
 	}
 
 	/* 700 is 350+350 (right side bar + left side bar) */
-	.ns-0 .mw-body-content .mw-parser-output > table,
-	.ns-0 .mw-body-content .mw-parser-output > .center,
-	.ns-0 .mw-body-content .mw-parser-output > .navbox,
+	.ns-0 .mw-body-content .mw-parser-output>table,
+	.ns-0 .mw-body-content .mw-parser-output>.center,
+	.ns-0 .mw-body-content .mw-parser-output>.navbox,
 	#mp-topbanner {
-		max-width: calc( 100% - 700px );
+		max-width: calc(100% - 700px);
 	}
 
 	/* We increase the font size a bit */
@@ -294,8 +296,10 @@
 	}
 
 }
-@media only screen and ( max-width: 600px ) and ( -webkit-min-device-pixel-ratio: 2 ),
-	only screen and ( max-width:600px ) and ( min-resolution: 2dppx ) {
+
+@media only screen and (max-width: 600px) and (-webkit-min-device-pixel-ratio: 2),
+only screen and (max-width:600px) and (min-resolution: 2dppx) {
+
 	/* We reduce the font size a bit, since retina screens rule */
 	.skin-vector .mw-body-content {
 		font-size: 0.75em;
@@ -308,4 +312,5 @@
 		font-weight: bold;
 	}
 }
+
 /*使用方法和介绍参见[[enwiki:User:TheDJ/responsiveContent]]*/
