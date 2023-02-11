@@ -9,10 +9,8 @@ $.when(
         wgTitle = mw.config.get("wgTitle"),
         wgNamespaceNumber = mw.config.get("wgNamespaceNumber"),
         RelevantPageName = mw.config.get("wgRelevantPageName").split(" ").join("_"),
-        isWhatlinkshere =
-      mw.config.get("wgCanonicalSpecialPageName") === "Whatlinkshere",
-        isTemplate =
-      wgNamespaceNumber === 10 || RelevantPageName.startsWith("Template:"),
+        isWhatlinkshere = mw.config.get("wgCanonicalSpecialPageName") === "Whatlinkshere",
+        isTemplate = wgNamespaceNumber === 10 || RelevantPageName.startsWith("Template:"),
         Title = isWhatlinkshere
             ? encodeURIComponent(
                 RelevantPageName.replace(/^(Template:|萌娘百科:|Help:)/gi, "")
