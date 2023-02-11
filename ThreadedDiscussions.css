@@ -1,16 +1,18 @@
 .ns-talk dd {
- margin:0;
- padding:0;
+    margin: 0;
+    padding: 0;
 }
- 
+
 .ns-talk dl {
- border-top:solid 1px #a7d7f9;
- border-left:solid 1px #a7d7f9;
- padding-top:.5em;
- padding-left:.5em;
- margin-left:1em;
- zoom: 1; /* be kind to IE7 */
+    border-top: solid 1px #a7d7f9;
+    border-left: solid 1px #a7d7f9;
+    padding-top: .5em;
+    padding-left: .5em;
+    margin-left: 1em;
+    zoom: 1;
+    /* be kind to IE7 */
 }
+
 /*
 .ns-talk dl,
 .ns-talk dl dl dl,
