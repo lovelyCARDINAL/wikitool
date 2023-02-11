@@ -7,15 +7,14 @@
 */
 /* global $, mw */
 function MassRollback() {
-    $(".mw-contributions-list").prepend("<div style=\"clear: both;\"><div style=\"float:right;\" class=\"mw-history-revision-actions\"> \
-		<button type=\"submit\" name=\"undo-batch\" value=\"1\" class=\"contributions-undo-button\">撤销选中版本</button> \
+    $(".mw-contributions-list").prepend(`<div style=\"clear: both;\"><div style=\"float:right;\" class=\"mw-history-revision-actions\"> 		<button type=\"submit\" name=\"undo-batch\" value=\"1\" class=\"contributions-undo-button\">撤销选中版本</button> \
 		<button type=\"submit\" name=\"rollback-batch\" value=\"1\" class=\"contributions-rollback-button patroller-show\">回退选中页面</button></div> \
 		<button type=\"submit\" name=\"revdel-batch\" value=\"1\" class=\"contributions-revdel-button sysop-show\">删除选中版本</button></div> \
 		<div class=\"mw-checkbox-toggle-controls\">选择：<a class=\"mw-checkbox-all\" role=\"button\" tabindex=\"0\">全选</a>、 \
 		<a class=\"mw-checkbox-none\" role=\"button\" tabindex=\"0\">全不选</a>、 \
 		<a class=\"mw-checkbox-invert\" role=\"button\" tabindex=\"0\">反选</a>、 \
 		<a class=\"mw-checkbox-between\" role=\"button\" tabindex=\"0\">连选</a> \
-		</div></div>");
+		</div></div>`);
 
     var $checkboxes = $("li input[type=\"checkbox\"]");
     function selectAll(check) {
