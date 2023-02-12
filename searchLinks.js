@@ -13,7 +13,7 @@ $.when(
         isTemplate = wgNamespaceNumber === 10 || RelevantPageName.startsWith("Template:"),
         Title = isWhatlinkshere
             ? encodeURIComponent(
-                RelevantPageName.replace(/^(Template:|萌娘百科:|Help:)/gi, "")
+                RelevantPageName.replace(/^(Template:|萌娘百科:|Help:)/giu, "")
             )
             : encodeURIComponent(wgTitle.split(" ").join("_"));
     if (NS.includes(wgNamespaceNumber) || (isWhatlinkshere && !isTemplate)) {
