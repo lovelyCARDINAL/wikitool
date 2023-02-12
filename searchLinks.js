@@ -3,19 +3,12 @@
 $.when(
     mw.loader.using(["mediawiki.util", "ext.gadget.site-lib"]),
     $.ready
-).then(function () {
-    const NS = [0, 4, 12],
-        wgScript = mw.config.get("wgScript"),
-        wgTitle = mw.config.get("wgTitle"),
-        wgNamespaceNumber = mw.config.get("wgNamespaceNumber"),
-        RelevantPageName = mw.config.get("wgRelevantPageName").split(" ").join("_"),
-        isWhatlinkshere = mw.config.get("wgCanonicalSpecialPageName") === "Whatlinkshere",
-        isTemplate = wgNamespaceNumber === 10 || RelevantPageName.startsWith("Template:"),
-        Title = isWhatlinkshere
-            ? encodeURIComponent(
-                RelevantPageName.replace(/^(Template:|萌娘百科:|Help:)/giu, "")
-            )
-            : encodeURIComponent(wgTitle.split(" ").join("_"));
+).then(() => {
+    const NS = [0, 4, 12], wgScript = mw.config.get("wgScript"), wgTitle = mw.config.get("wgTitle"), wgNamespaceNumber = mw.config.get("wgNamespaceNumber"), RelevantPageName = mw.config.get("wgRelevantPageName").split(" ").join("_"), isWhatlinkshere = mw.config.get("wgCanonicalSpecialPageName") === "Whatlinkshere", isTemplate = wgNamespaceNumber === 10 || RelevantPageName.startsWith("Template:"), Title = isWhatlinkshere
+        ? encodeURIComponent(
+            RelevantPageName.replace(/^(Template:|萌娘百科:|Help:)/giu, "")
+        )
+        : encodeURIComponent(wgTitle.split(" ").join("_"));
     if (NS.includes(wgNamespaceNumber) || (isWhatlinkshere && !isTemplate)) {
         mw.util.addPortletLink(
             "p-cactions",

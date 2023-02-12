@@ -21,30 +21,30 @@ function MassRollback() {
     function selectAll(check) {
         $checkboxes.prop("checked", check);
     }
-    $(".mw-checkbox-all").click(function() {
+    $(".mw-checkbox-all").click(function () {
         selectAll(true);
     });
-    $(".mw-checkbox-none").click(function() {
+    $(".mw-checkbox-none").click(function () {
         selectAll(false);
     });
-    $(".mw-checkbox-invert").click(function() {
-        $checkboxes.prop("checked", function(i, val) {
+    $(".mw-checkbox-invert").click(function () {
+        $checkboxes.prop("checked", function (i, val) {
             return !val;
         });
     });
-    $(".mw-checkbox-between").click(function() {
+    $(".mw-checkbox-between").click(function () {
         var last = $(".mw-contributions-list input[type=\"checkbox\"]:checked:last").parent()[0];
         $(".mw-contributions-list input[type=\"checkbox\"]:checked:first").parent().nextUntil(last).children("input[type=\"checkbox\"]").prop("checked", true);
     });
 
     const api = new mw.Api();
-    $(".contributions-rollback-button").click(function() {
+    $(".contributions-rollback-button").click(function () {
         const checked = $(".mw-contributions-list li :checkbox:checked");
         const reason = prompt("选中了 " + checked.length + " 个页面\n批量回退的编辑摘要【xxx //MassRollback】：");
         if (reason === null) return;
         console.log("开始回退...");
         const user = mw.config.get("wgRelevantUserName");
-        checked.each(function() {
+        checked.each(function () {
             var title = this.getAttribute("data-title");
             try {
                 api.postWithToken("rollback", {
@@ -52,7 +52,7 @@ function MassRollback() {
                     format: "json",
                     title: title,
                     user: user,
-                    markbot: mw.config.get("wgUserGroups").includes("sysop") && (mw.config.get("wgUserGroups").includes("flood") || document.URL.includes("bot=1")) ,
+                    markbot: mw.config.get("wgUserGroups").includes("sysop") && (mw.config.get("wgUserGroups").includes("flood") || document.URL.includes("bot=1")),
                     watchlist: "nochange",
                     tags: "Automation tool",
                     summary: reason ? reason + " //MassRollback" : "//MassRollback"
@@ -65,12 +65,12 @@ function MassRollback() {
         });
     });
 
-    $(".contributions-undo-button").click(function() {
+    $(".contributions-undo-button").click(function () {
         const checked = $(".mw-contributions-list li :checkbox:checked");
         const reason = prompt("选中了 " + checked.length + " 个页面\n批量撤销的编辑摘要【xxx //MassUndo】：");
         if (reason === null) return;
         console.log("开始撤销...");
-        checked.each(function() {
+        checked.each(function () {
             var title = this.getAttribute("data-title");
             var revid = this.getAttribute("data-revid");
             try {
@@ -91,13 +91,13 @@ function MassRollback() {
             }
         });
     });
-	
-    $(".contributions-revdel-button").click(function() {
+
+    $(".contributions-revdel-button").click(function () {
         const checked = $(".mw-contributions-list li :checkbox:checked");
         const reason = prompt("选中了 " + checked.length + " 个版本\n将删除版本内容和编辑摘要\n批量版本删除的原因【xxx //MassRevisionDelete】：");
         if (reason === null) return;
         console.log("开始版本删除...");
-        checked.each(function() {
+        checked.each(function () {
             var title = this.getAttribute("data-title");
             var revid = this.getAttribute("data-revid");
             try {
@@ -119,8 +119,8 @@ function MassRollback() {
         });
     });
 }
-$( function() {
-    if (mw.config.get("wgCanonicalSpecialPageName") !== "Contributions") { 
+$(() => {
+    if (mw.config.get("wgCanonicalSpecialPageName") !== "Contributions") {
         return;
     }
     MassRollback();
