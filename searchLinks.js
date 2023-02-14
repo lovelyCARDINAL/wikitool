@@ -15,13 +15,7 @@ $.when(
         sllink = `${wgScript}?title=Special:Search&search=insource:%22${Title}%22+hastemplate:%22${Title}%22&profile=advanced&ns0=1&ns4=1&ns8=1&ns10=1&ns12=1&ns14=1&ns828=1`, sltext = wgULS("查找嵌入", "搜尋嵌入"), sltitle = wgULS("通过高级搜索查找嵌入", "搜尋實際的嵌入");
     }
     if (sltext) {
-        mw.util.addPortletLink(
-            "p-cactions",
-            sllink,
-            sltext,
-            "ca-searchlinks",
-            sltitle,
-        );
+        mw.util.addPortletLink("p-cactions", sllink, sltext, "ca-searchlinks", sltitle);
         $("#ca-searchlinks a")[0].setAttribute("target", "_blank");
     }
 });
