@@ -6,46 +6,47 @@
     5.增加功能，批量更改该用户编辑的版本可见性
 */
 /* global $, mw */
-function MassRollback() {
+"use strict";
+$.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
+    if (mw.config.get("wgCanonicalSpecialPageName") !== "Contributions") {
+        return;
+    }
+
+    $(".mw-contributions-list li").each(function () {
+        const newChk = document.createElement("input");
+        newChk.setAttribute("type", "checkbox");
+        newChk.setAttribute("data-title", this.getElementsByClassName("mw-contributions-title")[0].innerText);
+        newChk.setAttribute("data-revid", this.getAttribute("data-mw-revid"));
+        this.prepend(newChk);
+    });
+
     $(".mw-contributions-list").prepend("<div style=\"clear: both;\"><div style=\"float:right;\" class=\"mw-history-revision-actions\"> \
-		<button type=\"submit\" name=\"undo-batch\" value=\"1\" class=\"contributions-undo-button\">撤销选中版本</button> \
-		<button type=\"submit\" name=\"rollback-batch\" value=\"1\" class=\"contributions-rollback-button patroller-show\">回退选中页面</button></div> \
-		<button type=\"submit\" name=\"revdel-batch\" value=\"1\" class=\"contributions-revdel-button sysop-show\">删除选中版本</button></div> \
-		<div class=\"mw-checkbox-toggle-controls\">选择：<a class=\"mw-checkbox-all\" role=\"button\" tabindex=\"0\">全选</a>、 \
-		<a class=\"mw-checkbox-none\" role=\"button\" tabindex=\"0\">全不选</a>、 \
-		<a class=\"mw-checkbox-invert\" role=\"button\" tabindex=\"0\">反选</a>、 \
+		<button type=\"submit\" name=\"undo-batch\" value=\"1\" class=\"contributions-undo-button\">撤销</button> \
+		<button type=\"submit\" name=\"rollback-batch\" value=\"1\" class=\"contributions-rollback-button patroller-show\">回退</button> \
+		<button type=\"submit\" name=\"revdel-batch\" value=\"1\" class=\"contributions-revdel-button sysop-show\">版本删除</button></div> \
+		<div class=\"mw-checkbox-toggle-controls\">选择：\
+		<a class=\"mw-checkbox-invert\" role=\"button\" tabindex=\"0\">全选/反选</a>、 \
 		<a class=\"mw-checkbox-between\" role=\"button\" tabindex=\"0\">连选</a> \
 		</div></div>");
 
-    var $checkboxes = $("li input[type=\"checkbox\"]");
-    function selectAll(check) {
-        $checkboxes.prop("checked", check);
-    }
-    $(".mw-checkbox-all").click(function () {
-        selectAll(true);
+    $(".mw-checkbox-invert").click(() => {
+        $("li input[type=\"checkbox\"]").prop("checked", (_i, ele) => !ele);
     });
-    $(".mw-checkbox-none").click(function () {
-        selectAll(false);
-    });
-    $(".mw-checkbox-invert").click(function () {
-        $checkboxes.prop("checked", function (i, val) {
-            return !val;
-        });
-    });
-    $(".mw-checkbox-between").click(function () {
-        var last = $(".mw-contributions-list input[type=\"checkbox\"]:checked:last").parent()[0];
+    $(".mw-checkbox-between").click(() => {
+        const last = $(".mw-contributions-list input[type=\"checkbox\"]:checked:last").parent()[0];
         $(".mw-contributions-list input[type=\"checkbox\"]:checked:first").parent().nextUntil(last).children("input[type=\"checkbox\"]").prop("checked", true);
     });
 
     const api = new mw.Api();
-    $(".contributions-rollback-button").click(function () {
-        const checked = $(".mw-contributions-list li :checkbox:checked");
+    const checked = $(".mw-contributions-list li :checkbox:checked");
+    $(".contributions-rollback-button").click(() => {
         const reason = prompt("选中了 " + checked.length + " 个页面\n批量回退的编辑摘要【xxx //MassRollback】：");
-        if (reason === null) return;
+        if (reason === null)
+            return;
         console.log("开始回退...");
         const user = mw.config.get("wgRelevantUserName");
         checked.each(function () {
-            var title = this.getAttribute("data-title");
+            const title = this.getAttribute("data-title");
             try {
                 api.postWithToken("rollback", {
                     action: "rollback",
@@ -65,14 +66,14 @@ function MassRollback() {
         });
     });
 
-    $(".contributions-undo-button").click(function () {
-        const checked = $(".mw-contributions-list li :checkbox:checked");
+    $(".contributions-undo-button").click(() => {
         const reason = prompt("选中了 " + checked.length + " 个页面\n批量撤销的编辑摘要【xxx //MassUndo】：");
-        if (reason === null) return;
+        if (reason === null)
+            return;
         console.log("开始撤销...");
         checked.each(function () {
-            var title = this.getAttribute("data-title");
-            var revid = this.getAttribute("data-revid");
+            let title = this.getAttribute("data-title"),
+                revid = this.getAttribute("data-revid");
             try {
                 api.postWithToken("csrf", {
                     action: "edit",
@@ -92,14 +93,14 @@ function MassRollback() {
         });
     });
 
-    $(".contributions-revdel-button").click(function () {
-        const checked = $(".mw-contributions-list li :checkbox:checked");
+    $(".contributions-revdel-button").click(() => {
         const reason = prompt("选中了 " + checked.length + " 个版本\n将删除版本内容和编辑摘要\n批量版本删除的原因【xxx //MassRevisionDelete】：");
-        if (reason === null) return;
+        if (reason === null)
+            return;
         console.log("开始版本删除...");
         checked.each(function () {
-            var title = this.getAttribute("data-title");
-            var revid = this.getAttribute("data-revid");
+            let title = this.getAttribute("data-title"),
+                revid = this.getAttribute("data-revid");
             try {
                 api.postWithToken("csrf", {
                     action: "revisiondelete",
@@ -118,10 +119,4 @@ function MassRollback() {
             }
         });
     });
-}
-$(() => {
-    if (mw.config.get("wgCanonicalSpecialPageName") !== "Contributions") {
-        return;
-    }
-    MassRollback();
 });
