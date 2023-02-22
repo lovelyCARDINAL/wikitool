@@ -3,11 +3,9 @@
     2.为管理员回退提供markbot可选框，无需以flood用户组或URL带bot视为开关
     3.可能不需要连选功能，按住shift可自动连选，但移动设备无shift
     4.使用ooui
-    5.增加功能，批量更改该用户编辑的版本可见性
 */
-/* global $, mw, oouiDialog */
 "use strict";
-$.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).then(function () {
+$.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).then(() => {
     if (mw.config.get("wgCanonicalSpecialPageName") !== "Contributions") {
         return;
     }
@@ -27,7 +25,7 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
         <span class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-undo-button\">撤销</span> \
         <span class=\"mw-ui-button mw-ui-progressive patroller-show\" id=\"contributions-rollback-button\" title=\"默认不启用markbotedit权限。\">回退</span> \
         <span class=\"mw-ui-button mw-ui-progressive sysop-show\" id=\"contributions-revdel-button\" title=\"默认仅删除内容和摘要。\">版本删除</span> \
-	    </div>"
+	    </div>",
     );
 
 
@@ -40,15 +38,15 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
     });
 
     const api = new mw.Api();
+
     $("#contributions-rollback-button").click(async () => {
         const checked = $(".mw-contributions-list li :checkbox:checked");
-        const reason = await oouiDialog.prompt(`<ul><li>选中了${checked.length}个页面</li><li>批量回退操作的编辑摘要：<code>xxx//MassRollback</code></li><li>空白则使用默认回退摘要，取消则不进行回退</li></ul><hr>请输入回退摘要：`, {
+        const reason = await oouiDialog.prompt(`<ul><li>选中了${checked.length}个页面</li><li>批量回退操作的编辑摘要：<code>xxx//MassRollback</code></li><li>空白则使用默认回退摘要，取消则不进行回退</li><li>管理员可自授权机器用户或在URL后添加<code>bot=1</bot>以启用markbotedit。</li></ul><hr>请输入回退摘要：`, {
             title: "批量回退小工具",
             size: "medium",
             required: false,
         });
-        if (reason === null)
-            return;
+        if (reason === null) { return; }
         console.log("开始回退...");
         const user = mw.config.get("wgRelevantUserName");
         checked.each(function () {
@@ -62,12 +60,12 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
                     markbot: mw.config.get("wgUserGroups").includes("sysop") && (mw.config.get("wgUserGroups").includes("flood") || document.URL.includes("bot=1")),
                     watchlist: "nochange",
                     tags: "Automation tool",
-                    summary: reason ? reason + " //MassRollback" : "//MassRollback"
+                    summary: reason ? `${reason} //MassRollback` : "//MassRollback",
                 }).then((result) => {
-                    console.log("回退：" + title + "\n" + result);
+                    console.log(`回退：${title}\n${result}`);
                 });
             } catch (e) {
-                console.log("回退失败：" + e instanceof Error ? e.stack.split("\n")[1].trim() : JSON.stringify(e));
+                console.log(`回退失败：${e}` instanceof Error ? e.stack.split("\n")[1].trim() : JSON.stringify(e));
             }
         });
     });
@@ -79,11 +77,10 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
             size: "medium",
             required: false,
         });
-        if (reason === null)
-            return;
+        if (reason === null) { return; }
         console.log("开始撤销...");
         checked.each(function () {
-            let title = this.getAttribute("data-title"),
+            const title = this.getAttribute("data-title"),
                 revid = this.getAttribute("data-revid");
             try {
                 api.postWithToken("csrf", {
@@ -94,12 +91,12 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
                     tags: "Automation tool",
                     bot: mw.config.get("wgUserGroups").includes("flood"),
                     watchlist: "nochange",
-                    summary: reason ? reason + " //MassUndo" : "//MassUndo"
+                    summary: reason ? `${reason} //MassUndo` : "//MassUndo",
                 }).then((result) => {
-                    console.log("撤销：" + title + "\n" + result);
+                    console.log(`撤销：${title}\n${result}`);
                 });
             } catch (e) {
-                console.log("撤销失败：" + e instanceof Error ? e.stack.split("\n")[1].trim() : JSON.stringify(e));
+                console.log(`撤销失败：${e}` instanceof Error ? e.stack.split("\n")[1].trim() : JSON.stringify(e));
             }
         });
     });
@@ -111,11 +108,10 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
             size: "medium",
             required: false,
         });
-        if (reason === null)
-            return;
+        if (reason === null) { return; }
         console.log("开始版本删除...");
         checked.each(function () {
-            let title = this.getAttribute("data-title"),
+            const title = this.getAttribute("data-title"),
                 revid = this.getAttribute("data-revid");
             try {
                 api.postWithToken("csrf", {
@@ -126,12 +122,12 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
                     ids: revid,
                     tags: "Automation tool",
                     hide: "comment|content",
-                    reason: reason ? reason + " //MassRevisionDelete" : "//MassRevisionDelete"
+                    reason: reason ? `${reason} //MassRevisionDelete` : "//MassRevisionDelete",
                 }).then((result) => {
-                    console.log("版本删除：" + title + "\n" + result);
+                    console.log(`版本删除：${title}\n${result}`);
                 });
             } catch (e) {
-                console.log("版本删除失败：" + e instanceof Error ? e.stack.split("\n")[1].trim() : JSON.stringify(e));
+                console.log(`版本删除失败：${e}` instanceof Error ? e.stack.split("\n")[1].trim() : JSON.stringify(e));
             }
         });
     });
