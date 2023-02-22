@@ -21,7 +21,7 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
     });
 
     $("#mw-content-text > p:first").before(
-        "<div style=\"float: right; font-size: 66%\" id=\"mw-history-revision-actions\"> \
+        "<div style=\"float: right; font-size: 66%; margin: 0.6em 0;\" id=\"mw-history-revision-actions\"> \
         <span class=\"mw-ui-button\" id=\"mw-checkbox-invert\">全选/反选</span> \
         <span class=\"mw-ui-button\" id=\"mw-checkbox-between\">连选</span> \
         <span class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-undo-button\">撤销</span> \
