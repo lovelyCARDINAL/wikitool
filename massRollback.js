@@ -41,7 +41,7 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
 
     $("#contributions-rollback-button").click(async () => {
         const checked = $(".mw-contributions-list li :checkbox:checked");
-        const reason = await oouiDialog.prompt(`<ul><li>选中了${checked.length}个页面</li><li>批量回退操作的编辑摘要：<code>xxx//MassRollback</code></li><li>空白则使用默认回退摘要，取消则不进行回退</li><li>管理员可自授权机器用户或在URL后添加<code>bot=1</bot>以启用markbotedit。</li></ul><hr>请输入回退摘要：`, {
+        const reason = await oouiDialog.prompt(`<ul><li>选中了${checked.length}个页面</li><li>批量回退操作的编辑摘要：<code>xxx//MassRollback</code></li><li>空白则使用默认回退摘要，取消则不进行回退</li><li>管理员可自授权机器用户或在URL后添加<code>bot=1</code>以启用markbotedit。</li></ul><hr>请输入回退摘要：`, {
             title: "批量回退小工具",
             size: "medium",
             required: false,
