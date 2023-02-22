@@ -20,26 +20,28 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
         this.prepend(newChk);
     });
 
-    $(".mw-contributions-list").prepend("<div style=\"clear: both;\"><div style=\"float:right;\" class=\"mw-history-revision-actions\"> \
-		<button type=\"submit\" name=\"undo-batch\" value=\"1\" class=\"contributions-undo-button\">撤销</button> \
-		<button type=\"submit\" name=\"rollback-batch\" value=\"1\" class=\"contributions-rollback-button patroller-show\">回退</button> \
-		<button type=\"submit\" name=\"revdel-batch\" value=\"1\" class=\"contributions-revdel-button sysop-show\">版本删除</button></div> \
-		<div class=\"mw-checkbox-toggle-controls\">选择：\
-		<a class=\"mw-checkbox-invert\" role=\"button\" tabindex=\"0\">全选/反选</a>、 \
-		<a class=\"mw-checkbox-between\" role=\"button\" tabindex=\"0\">连选</a> \
-		</div></div>");
+    $("#mw-content-text > p:first").before(
+        "<div style=\"float: right; font-size: 66%\" id=\"mw-history-revision-actions\"> \
+        <span class=\"mw-ui-button\" id=\"mw-checkbox-invert\">全选/反选</span> \
+        <span class=\"mw-ui-button\" id=\"mw-checkbox-between\">连选</span> \
+        <span class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-undo-button\">撤销</span> \
+        <span class=\"mw-ui-button mw-ui-progressive patroller-show\" id=\"contributions-rollback-button\" title=\"默认不启用markbotedit\">回退</span> \
+        <span class=\"mw-ui-button mw-ui-progressive sysop-show\" id=\"contributions-revdel-button\" title=\"默认仅删除内容和摘要\">版本删除</span> \
+	    </div>"
+    );
 
-    $(".mw-checkbox-invert").click(() => {
+
+    $("#mw-checkbox-invert").click(() => {
         $("li input[type=\"checkbox\"]").prop("checked", (_i, ele) => !ele);
     });
-    $(".mw-checkbox-between").click(() => {
+    $("#mw-checkbox-between").click(() => {
         const last = $(".mw-contributions-list input[type=\"checkbox\"]:checked:last").parent()[0];
         $(".mw-contributions-list input[type=\"checkbox\"]:checked:first").parent().nextUntil(last).children("input[type=\"checkbox\"]").prop("checked", true);
     });
 
     const api = new mw.Api();
-    const checked = $(".mw-contributions-list li :checkbox:checked");
-    $(".contributions-rollback-button").click(() => {
+    $("#contributions-rollback-button").click(() => {
+        const checked = $(".mw-contributions-list li :checkbox:checked");
         const reason = prompt("选中了 " + checked.length + " 个页面\n批量回退的编辑摘要【xxx //MassRollback】：");
         if (reason === null)
             return;
@@ -57,7 +59,7 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
                     watchlist: "nochange",
                     tags: "Automation tool",
                     summary: reason ? reason + " //MassRollback" : "//MassRollback"
-                }).then(function (result) {
+                }).then((result) => {
                     console.log("回退：" + title + "\n" + result);
                 });
             } catch (e) {
@@ -66,7 +68,8 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
         });
     });
 
-    $(".contributions-undo-button").click(() => {
+    $("#contributions-undo-button").click(() => {
+        const checked = $(".mw-contributions-list li :checkbox:checked");
         const reason = prompt("选中了 " + checked.length + " 个页面\n批量撤销的编辑摘要【xxx //MassUndo】：");
         if (reason === null)
             return;
@@ -84,7 +87,7 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
                     bot: mw.config.get("wgUserGroups").includes("flood"),
                     watchlist: "nochange",
                     summary: reason ? reason + " //MassUndo" : "//MassUndo"
-                }).then(function (result) {
+                }).then((result) => {
                     console.log("撤销：" + title + "\n" + result);
                 });
             } catch (e) {
@@ -93,7 +96,8 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
         });
     });
 
-    $(".contributions-revdel-button").click(() => {
+    $("#contributions-revdel-button").click(() => {
+        const checked = $(".mw-contributions-list li :checkbox:checked");
         const reason = prompt("选中了 " + checked.length + " 个版本\n将删除版本内容和编辑摘要\n批量版本删除的原因【xxx //MassRevisionDelete】：");
         if (reason === null)
             return;
@@ -111,7 +115,7 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
                     tags: "Automation tool",
                     hide: "comment|content",
                     reason: reason ? reason + " //MassRevisionDelete" : "//MassRevisionDelete"
-                }).then(function (result) {
+                }).then((result) => {
                     console.log("版本删除：" + title + "\n" + result);
                 });
             } catch (e) {
