@@ -5,9 +5,9 @@
     4.使用ooui
     5.增加功能，批量更改该用户编辑的版本可见性
 */
-/* global $, mw */
+/* global $, mw, oouiDialog */
 "use strict";
-$.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
+$.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).then(function () {
     if (mw.config.get("wgCanonicalSpecialPageName") !== "Contributions") {
         return;
     }
@@ -40,9 +40,13 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
     });
 
     const api = new mw.Api();
-    $("#contributions-rollback-button").click(() => {
+    $("#contributions-rollback-button").click(async () => {
         const checked = $(".mw-contributions-list li :checkbox:checked");
-        const reason = prompt("选中了 " + checked.length + " 个页面\n批量回退的编辑摘要【xxx //MassRollback】：");
+        const reason = await oouiDialog.prompt(`<ul><li>选中了${checked.length}个页面</li><li>批量回退操作的编辑摘要：<code>xxx//MassRollback</code></li><li>空白则使用默认回退摘要，取消则不进行回退</li></ul><hr>请输入回退摘要：`, {
+            title: "批量回退小工具",
+            size: "medium",
+            required: false,
+        });
         if (reason === null)
             return;
         console.log("开始回退...");
@@ -68,9 +72,13 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
         });
     });
 
-    $("#contributions-undo-button").click(() => {
+    $("#contributions-undo-button").click(async () => {
         const checked = $(".mw-contributions-list li :checkbox:checked");
-        const reason = prompt("选中了 " + checked.length + " 个页面\n批量撤销的编辑摘要【xxx //MassUndo】：");
+        const reason = await oouiDialog.prompt(`<ul><li>选中了${checked.length}个页面</li><li>批量撤销操作的编辑摘要：<code>xxx//MassUndo</code></li><li>空白则使用默认撤销摘要，取消则不进行撤销</li></ul><hr>请输入撤销摘要：`, {
+            title: "批量撤销小工具",
+            size: "medium",
+            required: false,
+        });
         if (reason === null)
             return;
         console.log("开始撤销...");
@@ -96,9 +104,13 @@ $.when($.ready, mw.loader.using(["mediawiki.api"])).then(function () {
         });
     });
 
-    $("#contributions-revdel-button").click(() => {
+    $("#contributions-revdel-button").click(async () => {
         const checked = $(".mw-contributions-list li :checkbox:checked");
-        const reason = prompt("选中了 " + checked.length + " 个版本\n将删除版本内容和编辑摘要\n批量版本删除的原因【xxx //MassRevisionDelete】：");
+        const reason = await oouiDialog.prompt(`<ul><li>选中了${checked.length}个页面，将删除版本内容和编辑摘要</li><li>批量版本删除的原因：<code>xxx//MassRevisionDelete</code></li><li>空白则使用默认原因，取消则不进行版本删除</li></ul><hr>请输入版本删除原因：`, {
+            title: "批量版本删除小工具",
+            size: "medium",
+            required: false,
+        });
         if (reason === null)
             return;
         console.log("开始版本删除...");
