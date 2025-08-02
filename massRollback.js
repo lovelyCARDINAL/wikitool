@@ -18,13 +18,13 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
         this.prepend(newChk);
     });
 
-    $("#mw-content-text > p:first").before(
-        "<div style=\"float: right; font-size: 66%; margin: 0.6em 0;\" id=\"mw-history-revision-actions\"> \
-        <span class=\"mw-ui-button\" id=\"mw-checkbox-invert\">全选/反选</span> \
-        <span class=\"mw-ui-button\" id=\"mw-checkbox-between\" title=\"请勾选需要操作的第一个和最后一个复选框后点击此按钮。\">连选</span> \
-        <span class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-undo-button\">撤销</span> \
-        <span class=\"mw-ui-button mw-ui-progressive patroller-show\" id=\"contributions-rollback-button\" title=\"默认不启用markbotedit权限。\">回退</span> \
-        <span class=\"mw-ui-button mw-ui-progressive sysop-show\" id=\"contributions-revdel-button\" title=\"默认仅删除内容和摘要。\">版本删除</span> \
+    $("#mw-content-text .mw-pager-navigation-bar:first").before(
+        "<div style=\"margin: 1em 0;\" id=\"mw-history-revision-actions\"> \
+        <a class=\"mw-ui-button\" id=\"mw-checkbox-invert\">全选/反选</a> \
+        <a class=\"mw-ui-button\" id=\"mw-checkbox-between\" title=\"请勾选需要操作的第一个和最后一个复选框后点击此按钮。\">连选</a> \
+        <a class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-undo-button\">撤销</a> \
+        <a class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-rollback-button\" title=\"默认不启用markbotedit权限。\">回退</a> \
+        <a class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-revdel-button\" title=\"默认仅删除内容和摘要。\">版本删除</a> \
         </div>",
     );
 
