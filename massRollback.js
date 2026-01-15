@@ -23,11 +23,11 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
         <a class=\"mw-ui-button\" id=\"mw-checkbox-invert\">全选/反选</a> \
         <a class=\"mw-ui-button\" id=\"mw-checkbox-between\" title=\"请勾选需要操作的第一个和最后一个复选框后点击此按钮。\">连选</a> \
         <a class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-undo-button\">撤销</a> \
-        <a class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-rollback-button\" title=\"默认不启用markbotedit权限。\">回退</a> \
-        <a class=\"mw-ui-button mw-ui-progressive\" id=\"contributions-revdel-button\" title=\"默认仅删除内容和摘要。\">版本删除</a> \
+        <a class=\"mw-ui-button mw-ui-progressive patroller-show\" id=\"contributions-movetousersubpage-button\">打回</a> \
+        <a class=\"mw-ui-button mw-ui-progressive patroller-show\" id=\"contributions-rollback-button\" title=\"默认不启用markbotedit权限。\">回退</a> \
+        <a class=\"mw-ui-button mw-ui-progressive sysop-show\" id=\"contributions-revdel-button\" title=\"默认仅删除内容和摘要。\">版本删除</a> \
         </div>",
     );
-
 
     $("#mw-checkbox-invert").click(() => {
         $("li input[type=\"checkbox\"]").prop("checked", (_i, ele) => !ele);
@@ -66,6 +66,37 @@ $.when($.ready, mw.loader.using(["mediawiki.api", "ext.gadget.libOOUIDialog"])).
                 });
             } catch (e) {
                 console.log(`回退失败：${e}` instanceof Error ? e.stack.split("\n")[1].trim() : JSON.stringify(e));
+            }
+        });
+    });
+
+    $("#contributions-movetousersubpage-button").click(async () => {
+        const checked = $(".mw-contributions-list li :checkbox:checked");
+        const reason = await oouiDialog.prompt(`<ul><li>选中了${checked.length}个页面</li><li>批量打回操作的编辑摘要：<code>xxx//MassMoveToUserSubpage</code></li><li>空白则使用默认打回摘要，取消则不进行打回</li></ul><hr>请输入打回摘要：`, {
+            title: "批量打回小工具",
+            size: "medium",
+            required: false,
+        });
+        if (reason === null) { return; }
+        console.log("开始打回...");
+        const user = mw.config.get("wgRelevantUserName");
+        checked.each(function () {
+            const title = this.getAttribute("data-title");
+            try {
+                api.postWithToken("csrf", {
+                    action: "move",
+                    format: "json",
+                    from: title,
+                    to: `User:${user}/${title}`,
+                    watchlist: "nochange",
+                    tags: "Automation tool",
+                    noredirect: true,
+                    reason: reason ? `${reason} //MassMoveToUserSubpage` : "//MassMoveToUserSubpage",
+                }).then((result) => {
+                    console.log(`打回：${title}\n${result}`);
+                });
+            } catch (e) {
+                console.log(`打回失败：${e}` instanceof Error ? e.stack.split("\n")[1].trim() : JSON.stringify(e));
             }
         });
     });
